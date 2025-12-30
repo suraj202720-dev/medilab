@@ -1,0 +1,223 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login with OTP</title>
+</head>
+<link rel="stylesheet" href="style2.css">
+
+<body>
+    <div class="login-box">
+        <div class="login-container">
+            <h2>Login</h2>
+            <input type="text" id="phone" placeholder="Enter Phone Number">
+            <button id="sendOtpBtn">Send OTP</button>
+            <p style="font-size: 15px;">OTP will be shared for Verification</p>
+
+            <div id="otpSection" style="display:none;">
+                <input type="text" id="otp" placeholder="Enter OTP">
+                <button id="verifyOtpBtn">Verify OTP</button>
+            </div>
+            <p style="font-size: 15px; color: blue;">I have a Corporate Account</p>
+            <p style="font-size: 12px; color: rgb(65, 36, 147);">Term & Condition and privacy policy</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("sendOtpBtn").addEventListener("click", function () {
+            const phone = document.getElementById("phone").value;
+            if (phone.length === 10) {
+                alert("OTP sent to " + phone);
+                document.getElementById("otpSection").style.display = "block";
+            } else {
+                alert("Please enter a valid 10-digit phone number");
+            }
+        });
+
+        document.getElementById("verifyOtpBtn").addEventListener("click", function () {
+            const otp = document.getElementById("otp").value;
+            if (otp === "123456") {
+                alert("Login successful!");
+                // Redirect to dashboard page
+                // window.location.href = "dashboard.html";
+            } else {
+                alert("Invalid OTP");
+            }
+        });
+    </script>
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MediBuddy Login</title>
+
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        /* ===== BODY BACKGROUND ===== */
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1cb5e0, #000046);
+        }
+
+        /* ===== GLASS LOGIN CARD ===== */
+        .login-container {
+            width: 350px;
+            padding: 25px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: #fff;
+        }
+
+        /* ===== HEADING ===== */
+        .login-container h2 {
+            margin-bottom: 8px;
+            font-size: 26px;
+        }
+
+        .sub-text {
+            font-size: 14px;
+            margin-bottom: 18px;
+            opacity: 0.9;
+        }
+
+        /* ===== INPUT ===== */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        /* ===== BUTTON ===== */
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background: #1cb5e0;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1597bb;
+        }
+
+        /* ===== OTP BOX ===== */
+        .otp-box {
+            position: relative;
+        }
+
+        .toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* ===== LINKS ===== */
+        .link {
+            margin-top: 14px;
+            font-size: 14px;
+            color: #e0f7ff;
+            cursor: pointer;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2>MediBuddy</h2>
+        <p class="sub-text">Login to access healthcare services</p>
+
+        <input type="text" id="phone" placeholder="Enter Mobile Number">
+
+        <button id="sendOtpBtn">Send OTP</button>
+
+        <!-- OTP SECTION -->
+        <div id="otpSection" style="display:none;">
+            <div class="otp-box">
+                <input type="password" id="otp" placeholder="Enter OTP">
+                <span class="toggle" onclick="toggleOtp()">👁</span>
+            </div>
+
+            <button id="verifyOtpBtn">Verify & Login</button>
+        </div>
+
+        <p class="link">I have a Corporate Account</p>
+        <p class="footer-text">Terms & Conditions • Privacy Policy</p>
+    </div>
+
+    <script>
+        /* SEND OTP */
+        document.getElementById("sendOtpBtn").addEventListener("click", function () {
+            const phone = document.getElementById("phone").value;
+
+            if (phone.length === 10) {
+                alert("OTP sent to " + phone);
+                document.getElementById("otpSection").style.display = "block";
+            } else {
+                alert("Enter valid 10-digit number");
+            }
+        });
+
+        /* VERIFY OTP */
+        document.getElementById("verifyOtpBtn").addEventListener("click", function () {
+            const otp = document.getElementById("otp").value;
+
+            if (otp === "123456") {
+                alert("Login Successful!");
+            } else {
+                alert("Invalid OTP");
+            }
+        });
+
+        /* SHOW / HIDE OTP */
+        function toggleOtp() {
+            const otp = document.getElementById("otp");
+            otp.type = otp.type === "password" ? "text" : "password";
+        }
+    </script>
+
+</body>
+
+</html>
